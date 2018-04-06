@@ -27,40 +27,33 @@ body {
     width: 1px;
   }
   
-  input[type=search], div.button {  
-    width: 100%;
-    height: 35px;
-  
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    
-    font-family: inherit;
-    font-size: inherit;
-  }
-  
-  input[type=search] {
-    margin: 0;
-    padding: 0 10px;
-    
-    background-color: #f8f8f8;
-    
-    border: 0;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  
-  div.button {
-    line-height: 35px;
-  
-    margin: 0;
-    padding: 0 20px;
-  
-    color: #fff;
-    background-color: #512888;
-    font-weight: bold;
-    
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    
-    white-space: nowrap;
-  }
+ form.search input[type=text]{
+     padding: 10px;
+     font-size: 16px;
+     border: 1px #512888;
+     float: center;
+     width: 60%;
+     background: white;
+ }
+
+ form.search button{
+     float:center;
+     width: 20%;
+     padding: 10px;
+     background: white;
+     color: black;
+     font-size: 16px;
+     border: 1px #512888;
+     border-left: none;
+     cursor: pointer;
+ }
+
+ form.search button:hover{
+     background: #512888;
+ }
+
+ form.search::after{
+     content:"";
+     clear:both;
+     display: table;
+ }
