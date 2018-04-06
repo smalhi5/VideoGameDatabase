@@ -1,0 +1,27 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "IGDB web server that uses the igdb api",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "html": "^1.0.0",
+    "http": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smalhi5/VideoGameDatabase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smalhi5/VideoGameDatabase/issues"
+  },
+  "homepage": "https://github.com/smalhi5/VideoGameDatabase#readme"
+}
