@@ -1,10 +1,14 @@
 "use strict"
 
-const igdb = require('igdb-api-node').default;
-const client = igdb('d24a990ec0ea072538e13060eda5b3ae');
+var input = document.getElementById('userInput');
 
-var input = document.getElementById("userInput").value;
-console.log(input);
+document.querySelector('form.search').addEventListener('submit', function (e) {
+
+    //prevent the normal submission of the form
+    e.preventDefault();
+
+    console.log(input.value);
+});
 
 /// How to get input from user and then search via the API for the data on 
 /// the specified game???

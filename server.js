@@ -9,6 +9,10 @@ const http = require('http');
 // Import the fs library 
 const fs = require('fs');
 
+//igdb api creation and client
+const igdb = require('igdb-api-node').default;
+const client = igdb('d24a990ec0ea072538e13060eda5b3ae');
+
 const express = require('express');
 const app = express();
 
