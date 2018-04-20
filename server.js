@@ -11,7 +11,7 @@ const fs = require('fs');
 
 //igdb api creation and client
 const igdb = require('igdb-api-node').default;
-const client = igdb('d24a990ec0ea072538e13060eda5b3ae');
+const client = igdb('c2604f4341df19f02c8b176b621d9e2e');
 
 const express = require('express');
 const app = express();
@@ -23,6 +23,16 @@ cache['search.css'] = fs.readFileSync('public/search.css');
 app.use(express.static("./public"));
 app.get('/', function(req, res) {
     res.sendfile('public/search.html'); 
+});
+app.get('/games', function(req, res) {
+  return client.games({
+      fields: '*',
+      limit: 20,
+      offset: 0,
+      search: req.query.text
+  }).then(igdbResponse => {
+    res.send(igdbResponse.body);
+  }); 
 });
 
 app.listen(PORT, function () {
