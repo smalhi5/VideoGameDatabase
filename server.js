@@ -30,7 +30,10 @@ app.get('/games', function(req, res) {
       limit: 20,
       offset: 0,
       search: req.query.text
-  }).then(igdbResponse => {
+  }, [
+      'name',
+      'cover'
+  ]).then(igdbResponse => {
     res.send(igdbResponse.body);
   }); 
 });
