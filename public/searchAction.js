@@ -15,9 +15,11 @@ document.querySelector('form.search').addEventListener('submit', function (e) {
         searchResults.innerHTML = "";
         for(var i = 0; i < results.length; i++){
             var img = document.createElement("img");
+            img.src = results[i].cover.url;
             var node = document.createElement("a");
             node.text = results[i].name;
             node.href = "/games/" + results[i].id;
+            node.appendChild(img);
             searchResults.appendChild(node);
             var br = document.createElement("br");
             searchResults.appendChild(br);
