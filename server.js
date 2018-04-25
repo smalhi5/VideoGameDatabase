@@ -24,7 +24,23 @@ app.use(express.static("./public"));
 app.get('/', function(req, res) {
     res.sendfile('public/search.html'); 
 });
+
 app.get('/games', function(req, res) {
+  return client.games({
+      fields: '*',
+      limit: 20,
+      offset: 0,
+      search: req.query.text
+  }).then(igdbResponse => {
+    res.send(igdbResponse.body);
+  }); 
+});
+
+app.get('/games', function(req, res) {
+  client.image({
+    cloudinary_id: res.peram.id;
+  }, 'micro', 'jpg');
+
   return client.games({
       fields: '*',
       limit: 20,
