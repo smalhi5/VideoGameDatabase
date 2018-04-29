@@ -23,8 +23,6 @@ document.querySelector('form.search').addEventListener('submit', function (e) {
             node.href = "/games/" + results[i].id;
             node.appendChild(img);
             searchResults.appendChild(li);
-            var br = document.createElement("br");
-            searchResults.appendChild(br);
         }
     });
 });
