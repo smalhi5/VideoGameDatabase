@@ -24,16 +24,42 @@ app.use(express.static("./public"));
 app.get('/', function(req, res) {
     res.sendfile('public/search.html'); 
 });
+
+app.get('/games/:id', function(req, res) {
+  return client.games({
+      ids: [req.params.id]
+  }, [
+      'name',
+      'cover',
+      'summery',
+      'storyline',
+      'popularity',
+      'rating',
+      'release_dates'
+  ]).then(igdbResponse => {
+    var gameData = JSON.parse(igdbResponse.body));
+    // populate template w/ gamedata
+    console.log(igdbResponse.body);
+    // res.send rendered template
+    res.send(igdbResponse.body);
+  }); 
+});
+
 app.get('/games', function(req, res) {
   return client.games({
       fields: '*',
       limit: 20,
       offset: 0,
       search: req.query.text
-  }).then(igdbResponse => {
+  }, [
+      'name',
+      'cover'
+  ]).then(igdbResponse => {
+    console.log(igdbResponse.body);
     res.send(igdbResponse.body);
   }); 
 });
+
 
 app.listen(PORT, function () {
   console.log('Listing To Port');

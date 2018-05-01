@@ -14,13 +14,12 @@ document.querySelector('form.search').addEventListener('submit', function (e) {
         var searchResults = document.querySelector("#searchResults");
         searchResults.innerHTML = "";
         for(var i = 0; i < results.length; i++){
-            /*var cover = document.createElement("img");
-            cover.src = client.image({
-                cloudinary_id: results[i].id
-            }, 'micro');*/
+            var img = document.createElement("img");
+            img.src = results[i].cover.url;
             var node = document.createElement("a");
             node.text = results[i].name;
             node.href = "/games/" + results[i].id;
+            node.appendChild(img);
             searchResults.appendChild(node);
             var br = document.createElement("br");
             searchResults.appendChild(br);
