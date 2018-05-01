@@ -37,9 +37,10 @@ app.get('/games/:id', function(req, res) {
       'rating',
       'release_dates'
   ]).then(igdbResponse => {
-    var gameData = JSON.parse(igdbResponse.body));
+    var gameData = JSON.parse(igdbResponse.body);
     // populate template w/ gamedata
-    console.log(igdbResponse.body);
+
+    //console.log(igdbResponse.body);
     // res.send rendered template
     res.send(igdbResponse.body);
   }); 
