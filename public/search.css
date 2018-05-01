@@ -1,5 +1,5 @@
 body {
-    background-color: #A9A9A9;
+    background-color: white;
   
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     font-size: 16px;
@@ -8,7 +8,7 @@ body {
   h1, p {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     text-align: center;
-    color: #fff;
+    color: #512888;
     margin: 0 auto;
     max-width: 700px;
   }
@@ -17,7 +17,7 @@ body {
   div#container {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     display: table;
-    
+    background: #512888;
     width: 50%;
     
     margin: 50px auto 0;
@@ -53,15 +53,17 @@ li {
 }
  
 li:hover {
-  background: white;
+  background: grey;
   cursor: pointer;
 }
-
+form.search{
+  padding: 10px;
+}
  form.search input[type=text]{
    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
      padding: 10px;
      font-size: 16px;
-     border: 3px #512888;
+     border: 5px black;
      border-radius: 5px;
      float: center;
      width: 60%;
@@ -76,7 +78,7 @@ li:hover {
      background: white;
      color: black;
      font-size: 16px;
-     border: 3px #512888;
+     border: 3px black;
      border-radius: 5px;
      border-left: none;
      cursor: pointer;
@@ -100,31 +102,26 @@ li:hover {
    font-size: 16px;
  }
 
-/* Just some sample href css */
- /* unvisited link */
 a:link {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    color: #512888;
+    color: white;
     padding: 10 px;
 }
 
-/* visited link */
 a:visited {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     color: red;
     padding: 10 px;
 }
 
-/* mouse over link */
 a:hover {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     color: #512888;
     padding: 10 px;
 }
 
-/* selected link */
 a:active {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    color: blue;
+    color: #512888;
     padding: 10 px;
 }
