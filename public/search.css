@@ -1,5 +1,5 @@
 body {
-    background-color: #A9A9A9;
+    background-color: white;
   
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     font-size: 16px;
@@ -8,7 +8,7 @@ body {
   h1, p {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     text-align: center;
-    color: #fff;
+    color: #512888;
     margin: 0 auto;
     max-width: 700px;
   }
@@ -17,8 +17,8 @@ body {
   div#container {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     display: table;
-    
-    width: 400px;
+    background: #512888;
+    width: 50%;
     
     margin: 50px auto 0;
   }
@@ -30,12 +30,40 @@ body {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     width: 1px;
   }
-  
+  ul {
+  list-style-type: none;
+  width: 500px;
+}
+ 
+h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+}
+ 
+li {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 16px;
+  list-style-type: none; 
+  padding: 10px;
+  overflow: auto;
+}
+ 
+li:hover {
+  background: grey;
+  cursor: pointer;
+}
+form.search{
+  padding: 10px;
+}
  form.search input[type=text]{
    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
      padding: 10px;
      font-size: 16px;
-     border: 3px #512888;
+     border: 5px black;
      border-radius: 5px;
      float: center;
      width: 60%;
@@ -50,7 +78,7 @@ body {
      background: white;
      color: black;
      font-size: 16px;
-     border: 3px #512888;
+     border: 3px black;
      border-radius: 5px;
      border-left: none;
      cursor: pointer;
@@ -74,31 +102,26 @@ body {
    font-size: 16px;
  }
 
-/* Just some sample href css */
- /* unvisited link */
 a:link {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    color: #512888;
+    color: white;
     padding: 10 px;
 }
 
-/* visited link */
 a:visited {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     color: red;
     padding: 10 px;
 }
 
-/* mouse over link */
 a:hover {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    color: white;
+    color: #512888;
     padding: 10 px;
 }
 
-/* selected link */
 a:active {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    color: blue;
+    color: #512888;
     padding: 10 px;
 }

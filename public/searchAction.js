@@ -14,15 +14,18 @@ document.querySelector('form.search').addEventListener('submit', function (e) {
         var searchResults = document.querySelector("#searchResults");
         searchResults.innerHTML = "";
         for(var i = 0; i < results.length; i++){
+            var li = document.createElement("li");
             var img = document.createElement("img");
             img.src = results[i].cover.url;
+            if (!results[i].cover.url){
+                img.src = "https://dummyimage.com/90x90/000/0011ff.jpg&text=no+image+available+";
+            }
             var node = document.createElement("a");
+            li.appendChild(node);
             node.text = results[i].name;
             node.href = "/games/" + results[i].id;
             node.appendChild(img);
-            searchResults.appendChild(node);
-            var br = document.createElement("br");
-            searchResults.appendChild(br);
+            searchResults.appendChild(li);
         }
     });
 });
