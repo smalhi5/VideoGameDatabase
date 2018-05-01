@@ -30,7 +30,12 @@ app.get('/games/:id', function(req, res) {
       ids: [req.params.id]
   }, [
       'name',
-      'cover'
+      'cover',
+      'summery',
+      'storyline',
+      'popularity',
+      'rating',
+      'release_dates'
   ]).then(igdbResponse => {
     var gameData = JSON.parse(igdbResponse.body));
     // populate template w/ gamedata
