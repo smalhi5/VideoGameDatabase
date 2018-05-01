@@ -39,7 +39,7 @@ app.get('/games/:id', function(req, res) {
   ]).then(igdbResponse => {
     var gameData = JSON.parse(igdbResponse.body);
     // populate template w/ gamedata
-
+    
     //console.log(igdbResponse.body);
     // res.send rendered template
     res.send(igdbResponse.body);
@@ -60,7 +60,6 @@ app.get('/games', function(req, res) {
     res.send(igdbResponse.body);
   }); 
 });
-
 
 app.listen(PORT, function () {
   console.log('Listing To Port');

@@ -17,8 +17,10 @@ document.querySelector('form.search').addEventListener('submit', function (e) {
             var li = document.createElement("li");
             var img = document.createElement("img");
             img.src = results[i].cover.url;
-            if (!results[i].cover.url){
+            if (!results[i]["cover"]){
                 img.src = "https://dummyimage.com/90x90/000/0011ff.jpg&text=no+image+available+";
+            }else{
+                img.src = results[i].cover.url;
             }
             var node = document.createElement("a");
             li.appendChild(node);
