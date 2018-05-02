@@ -26,23 +26,52 @@ app.get('/', function(req, res) {
 });
 
 app.get('/games/:id', function(req, res) {
-  return client.games({
+  var gameData;
+
+  client.games({
       ids: [req.params.id]
   }, [
       'name',
       'cover',
-      'summery',
+      'summary',
       'storyline',
       'popularity',
       'rating',
-      'release_dates'
+      'release_dates',
+      'developers',
+      'franchise'
   ]).then(igdbResponse => {
-    var gameData = JSON.parse(igdbResponse.body);
+    gameData = igdbResponse.body[0];
+    // retrieve developer data
+    var developers = gameData.developers.map((id) => {
+      return client.companies({
+        id: gameData.developers[0]
+      },[
+        'name'
+      ])
+    });
+    return Promise.all(developers);
+  }).then(igdbResponses => {
+    // save developer data 
+    gameData.developers = igdbResponses.map(response => {
+      return response.body[0];
+    });
+
+    // retrieve francise information
+    return client.franchises({
+      ids: [gameData.franchise]
+    },[
+      'name'
+    ]);
+  }).then(igdbResponse => {
+    gameData.franchise = igdbResponse.body;
     // populate template w/ gamedata
 
     //console.log(igdbResponse.body);
     // res.send rendered template
-    res.send(igdbResponse.body);
+    res.send(gameData);
+  }).catch(err => {
+    console.log(err);
   }); 
 });
 
