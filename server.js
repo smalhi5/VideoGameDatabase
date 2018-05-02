@@ -9,6 +9,11 @@ const http = require('http');
 // Import the fs library 
 const fs = require('fs');
 
+// Import the pug library
+const pug = require('pug');
+// Compile the source code
+const compiledFunction = pug.compileFile('template.pug');
+
 //igdb api creation and client
 const igdb = require('igdb-api-node').default;
 const client = igdb('c2604f4341df19f02c8b176b621d9e2e');
@@ -38,7 +43,7 @@ app.get('/games/:id', function(req, res) {
       'release_dates'
   ]).then(igdbResponse => {
     var gameData = JSON.parse(igdbResponse.body);
-    // populate template w/ gamedata
+    // populate template w/ gameData
     
     //console.log(igdbResponse.body);
     // res.send rendered template
@@ -56,7 +61,7 @@ app.get('/games', function(req, res) {
       'name',
       'cover'
   ]).then(igdbResponse => {
-    console.log(igdbResponse.body);
+    // console.log(igdbResponse.body);
     res.send(igdbResponse.body);
   }); 
 });
