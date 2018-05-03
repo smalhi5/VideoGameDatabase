@@ -47,12 +47,6 @@ app.get('/games/:id', function(req, res) {
       'franchise'
   ]).then(igdbResponse => {
     gameData = igdbResponse.body[0];
-    // populate template w/ gameData
-    console.log(compiledFunction({
-      gameName: igdbResponse.body[0];
-    }));
-    // console.log(igdbResponse.body);
-    // res.send rendered template
     // retrieve developer data
     var developers = gameData.developers.map((id) => {
       return client.companies({
