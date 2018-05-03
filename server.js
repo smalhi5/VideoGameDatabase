@@ -37,7 +37,8 @@ app.get('/games/:id', function(req, res) {
       'storyline',
       'popularity',
       'rating',
-      'release_dates',
+      'rating_count',
+      'first_release_date',
       'developers',
       'franchise'
   ]).then(igdbResponse => {
@@ -65,7 +66,8 @@ app.get('/games/:id', function(req, res) {
     ]);
   }).then(igdbResponse => {
     gameData.franchise = igdbResponse.body;
-    // populate template w/ gamedata
+
+    // populate template w/ gameData
 
     //console.log(igdbResponse.body);
     // res.send rendered template
