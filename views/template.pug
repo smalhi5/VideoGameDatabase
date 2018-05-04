@@ -1,15 +1,15 @@
-doctype html  
-html(lang='en')  
+doctype html
+html(lang='en')
  head
    title= gameName
-   link(href='/public/gamePage.css', rel='stylesheet')
+   link(href='/gamePage.css', rel='stylesheet')
  body
    div.container
     header
         div.primary_header
-            form name='search' class='search' action=''
-                input type='text' id='userInput' placeholder='Search' name='userInput'
-                button type='submit' Search
+            form(name='search' class='search' action='')
+                input(type='text' id='userInput' placeholder='Search' name='userInput')
+                button(type='submit' Search)
     section
         h2.noDisplay= MainContent
         article.left_article
@@ -19,8 +19,8 @@ html(lang='en')
             p.popularity= popularity
             p.releaseDate= releaseDate
             p.franchise= franchise
-        // aside.right_article
-        //    img src= Source width='400' height='200' class='placeholder'
+        aside.right_article
+            img(src= coverUrl width='400' height='200' class='placeholder')
     div.row
         div.columns
             h4.gameSummaryHeading= "Game Summary"

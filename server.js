@@ -6,13 +6,13 @@ const PORT = 3000;
 // Import the HTTP library
 const http = require('http');
 
-// Import the fs library 
+// Import the fs library
 const fs = require('fs');
 
 // Import the Pug library
 const pug = require('pug');
 // Compile the source code
-const compiledFunction = pug.compileFile('public/template.pug');
+const compiledFunction = pug.compileFile('views/template.pug');
 
 //igdb api creation and client
 const igdb = require('igdb-api-node').default;
@@ -27,7 +27,7 @@ cache['search.css'] = fs.readFileSync('public/search.css');
 
 app.use(express.static("./public"));
 app.get('/', function(req, res) {
-    res.sendfile('public/search.html'); 
+    res.sendfile('public/search.html');
 });
 
 app.set('view engine', 'pug');
@@ -60,7 +60,7 @@ app.get('/games/:id', function(req, res) {
     });
     return Promise.all(developers);
   }).then(igdbResponses => {
-    // save developer data 
+    // save developer data
     gameData.developers = igdbResponses.map(response => {
       return response.body[0];
     });
@@ -75,22 +75,24 @@ app.get('/games/:id', function(req, res) {
     gameData.franchise = igdbResponse.body;
 
     // populate template w/ gameData
-    console.log(compiledFunction({
+    var html = compiledFunction({
       gameName: gameData.name,
-      developer: developers[0],
+      developer: gameData.developers[0],
       storyline: gameData.storyline,
       popularity: gameData.popularity,
       releaseData: gameData.first_release_date,
       franchise: gameData.franchise,
       gameSummary: gameData.summary,
-      gameRating: gameData.rating
-    }));
+      gameRating: gameData.rating,
+      coverUrl: gameData.cover.url
+    });
     //console.log(igdbResponse.body);
     // res.send rendered template
-    res.send(gameData);
+    //res.send(gameData);
+    res.send(html);
   }).catch(err => {
     console.log(err);
-  }); 
+  });
 });
 
 app.get('/games', function(req, res) {
@@ -105,7 +107,7 @@ app.get('/games', function(req, res) {
   ]).then(igdbResponse => {
     console.log(igdbResponse.body);
     res.send(igdbResponse.body);
-  }); 
+  });
 });
 
 
