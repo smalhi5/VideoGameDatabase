@@ -9,6 +9,11 @@ const http = require('http');
 // Import the fs library 
 const fs = require('fs');
 
+// Import the Pug library
+const pug = require('pug');
+// Compile the source code
+const compiledFunction = pug.compileFile('public/template.pug');
+
 //igdb api creation and client
 const igdb = require('igdb-api-node').default;
 const client = igdb('c2604f4341df19f02c8b176b621d9e2e');
@@ -24,6 +29,8 @@ app.use(express.static("./public"));
 app.get('/', function(req, res) {
     res.sendfile('public/search.html'); 
 });
+
+app.set('view engine', 'pug');
 
 app.get('/games/:id', function(req, res) {
   var gameData;
@@ -68,7 +75,16 @@ app.get('/games/:id', function(req, res) {
     gameData.franchise = igdbResponse.body;
 
     // populate template w/ gameData
-
+    console.log(compiledFunction({
+      gameName: gameData.name,
+      developer: developers[0],
+      storyline: gameData.storyline,
+      popularity: gameData.popularity,
+      releaseData: gameData.first_release_date,
+      franchise: gameData.franchise,
+      gameSummary: gameData.summary,
+      gameRating: gameData.rating
+    }));
     //console.log(igdbResponse.body);
     // res.send rendered template
     res.send(gameData);
