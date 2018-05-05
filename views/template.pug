@@ -3,13 +3,15 @@ html(lang='en')
  head
    title= gameName
    link(href='/gamePage.css', rel='stylesheet')
+   script(src='public/searchAction.js')
  body
+   div.searchResults
    div.container
     header
         div.primary_header
             form(name='search' class='search' action='')
                 input(type='text' id='userInput' placeholder='Search' name='userInput')
-                button(type='submit' Search)
+                button(type='submit' Search) Search
     section
         h2.noDisplay= MainContent
         article.left_article
