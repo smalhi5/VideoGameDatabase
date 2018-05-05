@@ -3,7 +3,7 @@ html(lang='en')
  head
    title= gameName
    link(href='/gamePage.css', rel='stylesheet')
-   script(src='public/searchAction.js')
+   script(src='/searchAction.js')
  body
    div.searchResults
    div.container
@@ -15,9 +15,9 @@ html(lang='en')
     section
         h2.noDisplay= MainContent
         article.left_article
-            h3= gameName
+            h3.gameName= gameName
             p.developer= developer
-            p.storyline= storyline
+            p.gameRating= gameRating
             p.popularity= popularity
             p.releaseDate= releaseDate
             p.franchise= franchise
@@ -28,5 +28,5 @@ html(lang='en')
             h4.gameSummaryHeading= "Game Summary"
             p.gameSummary= gameSummary
         div.columns
-            h4.gameRatingHeading= "Game Rating"
-            p.gameRating= gameRating
+            h4.gameRating= "Storyline"
+            p.storyline= storyline

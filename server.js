@@ -74,20 +74,16 @@ app.get('/games/:id', function(req, res) {
   }).then(igdbResponse => {
     gameData.franchise = igdbResponse.body;
     var date = new Date(gameData.first_release_date);
-    console.log("Franchise name: " + gameData.franchise.name);
-    for (var a in gameData.developers){
-      console.log(gameData.developers[a]);
-    }
     // populate template w/ gameData
     var html = compiledFunction({
       gameName: gameData.name,
       developer: "Developer: " + gameData.developers[0].name,
       storyline: "Storyline: " + gameData.storyline,
       popularity: "Popularity: " + Math.round(gameData.popularity),
-      releaseDate: "Release date: " + date,
+      releaseDate: "Release date: " + date.toString().slice(4, 15),
       franchise: "Franchise name: " + gameData.franchise.name,
       gameSummary: gameData.summary,
-      gameRating: Math.round(gameData.rating),
+      gameRating: "Game rating: " + Math.round(gameData.rating),
       coverUrl: gameData.cover.url
     });
     //console.log(igdbResponse.body);
@@ -104,6 +100,7 @@ app.get('/games', function(req, res) {
       fields: '*',
       limit: 20,
       offset: 0,
+      order: 'popularity:desc',
       search: req.query.text
   }, [
       'name',

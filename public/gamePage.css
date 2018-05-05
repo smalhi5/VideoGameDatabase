@@ -31,7 +31,7 @@
 	margin-top: 0px;
 }
 .columns {
-	width: 25%;
+	width: 50%;
 	float: left;
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 	color: #A5A5A5;
@@ -54,6 +54,7 @@
 	text-align: center;
 	color: #512888;
 }
+
 .primary_header {
     text-align: center;
 	width: 100%;
@@ -117,6 +118,10 @@
 	color: #717070;
 	font-weight: bold;
 	text-transform: uppercase;
+	font-size: 40px;
+	line-height: 24px;
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	color: #512888;
 }
 .container .left_article p {
 	padding-left: 5%;
