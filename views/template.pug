@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+ head
+   title= gameName
+   link(href='/gamePage.css', rel='stylesheet')
+   link(href='/search.css', rel='stylesheet')
+ body
+    header
+        div.primary_header
+            form(name='search' class='search' action='')
+                input(type='text' id='userInput' placeholder='Search' name='userInput')
+                button(type='submit' Search) Search
+    div.container(id='searchResults')
+        section
+            h2.noDisplay= MainContent
+            article.left_article
+                h3.gameName= gameName
+                p.developer= developer
+                p.gameRating= gameRating
+                p.popularity= popularity
+                p.releaseDate= releaseDate
+                p.franchise= franchise
+            aside.right_article
+                img(src= coverUrl width='400' height='200' class='placeholder')
+        div.row
+            div.columns
+                h4.gameSummaryHeading= "Game Summary"
+                p.gameSummary= gameSummary
+            div.columns
+                h4.gameRating= "Storyline"
+                p.storyline= storyline
+    script(src='/searchAction.js')
