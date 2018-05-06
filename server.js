@@ -78,7 +78,7 @@ app.get('/games/:id', function(req, res) {
     var html = compiledFunction({
       gameName: gameData.name,
       developer: "Developer: " + gameData.developers[0].name,
-      storyline: "Storyline: " + gameData.storyline,
+      storyline: gameData.storyline,
       popularity: "Popularity: " + Math.round(gameData.popularity),
       releaseDate: "Release date: " + date.toString().slice(4, 15),
       franchise: "Franchise name: " + gameData.franchise.name,
