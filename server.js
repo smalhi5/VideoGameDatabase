@@ -58,7 +58,6 @@ app.get('/games/:id', function(req, res) {
   }).then(igdbResponse => {
     // igdbResponse contains an array of matching companies
     gameData.developers = igdbResponse.body;
-
     // retrieve francise information
     console.log(gameData.franchise)
     return client.franchises({
