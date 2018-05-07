@@ -51,28 +51,28 @@ app.get('/games/:id', function(req, res) {
   ]).then(igdbResponse => {
     gameData = igdbResponse.body[0];
     // retrieve developer data
-    var developers = gameData.developers.map((id) => {
-      return client.companies({
-        id: gameData.developers[0]
-      },[
-        'name'
-      ])
-    });
-    return Promise.all(developers);
-  }).then(igdbResponses => {
-    // save developer data
-    gameData.developers = igdbResponses.map(response => {
-      return response.body[0];
-    });
-
+    return client.companies({
+        ids: gameData.developers
+      }, ['name']
+    );
+  }).then(igdbResponse => {
+    // igdbResponse contains an array of matching companies
+    gameData.developers = igdbResponse.body;
     // retrieve francise information
+    console.log(gameData.franchise)
     return client.franchises({
       ids: [gameData.franchise]
     },[
       'name'
     ]);
   }).then(igdbResponse => {
-    gameData.franchise = igdbResponse.body;
+    console.log(igdbResponse.body)
+    // The igdbResponse.body is an array of matching franchises
+    // Since we're only searching for one franchise, there should
+    // only be one result - and that's the one we're interested,
+    // so grab the first element of the results array and assign
+    // it to the franchise property
+    gameData.franchise = igdbResponse.body[0];
     var date = new Date(gameData.first_release_date);
     // populate template w/ gameData
     var html = compiledFunction({
@@ -106,7 +106,7 @@ app.get('/games', function(req, res) {
       'name',
       'cover'
   ]).then(igdbResponse => {
-    console.log(igdbResponse.body);
+    //console.log(igdbResponse.body);
     res.send(igdbResponse.body);
   });
 });
