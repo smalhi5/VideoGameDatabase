@@ -59,37 +59,26 @@ app.get('/games/:id', function(req, res) {
     // igdbResponse contains an array of matching companies
     gameData.developers = igdbResponse.body;
     // retrieve francise information
-    console.log(gameData.franchise)
-    return client.franchises({
-      ids: [gameData.franchise]
-    },[
-      'name'
-    ]);
-  }).then(igdbResponse => {
-    console.log(igdbResponse.body)
-    // The igdbResponse.body is an array of matching franchises
-    // Since we're only searching for one franchise, there should
-    // only be one result - and that's the one we're interested,
-    // so grab the first element of the results array and assign
-    // it to the franchise property
-    gameData.franchise = igdbResponse.body[0];
-    var date = new Date(gameData.first_release_date);
-    // populate template w/ gameData
-    var html = compiledFunction({
-      gameName: gameData.name,
-      developer: "Developer: " + gameData.developers[0].name,
-      storyline: gameData.storyline,
-      popularity: "Popularity: " + Math.round(gameData.popularity),
-      releaseDate: "Release date: " + date.toString().slice(4, 15),
-      franchise: "Franchise name: " + gameData.franchise.name,
-      gameSummary: gameData.summary,
-      gameRating: "Game rating: " + Math.round(gameData.rating),
-      coverUrl: gameData.cover.url
-    });
-    //console.log(igdbResponse.body);
-    // res.send rendered template
-    //res.send(gameData);
-    res.send(html);
+    console.log(gameData.franchise);
+    if(!gameData["franchise"]){
+      var date = new Date(gameData.first_release_date);
+      // populate template w/ gameData
+      var html = compiledFunction({
+        gameName: gameData.name,
+        developer: "Developer: " + gameData.developers[0].name,
+        storyline: gameData.storyline,
+        popularity: "Popularity: " + Math.round(gameData.popularity),
+        releaseDate: "Release date: " + date.toString().slice(4, 15),
+        franchise: "Franchise name: None",
+        gameSummary: gameData.summary,
+        gameRating: "Game rating: " + Math.round(gameData.rating),
+        coverUrl: gameData.cover.url
+      });
+      res.send(html);
+    }else{
+      var html_res = getFranchise(gameData);
+      res.send(html_res);
+    }
   }).catch(err => {
     console.log(err);
   });
@@ -110,6 +99,34 @@ app.get('/games', function(req, res) {
     res.send(igdbResponse.body);
   });
 });
+
+function getFranchise(gamedataset){
+  var games = gamedataset
+  return client.franchises({
+    ids: [games.franchise]
+  },[
+      'name'
+  ]).then(igdbResponse => {
+    console.log(igdbResponse.body)
+    games.franchise = igdbResponse.body[0];
+    console.log('works here');
+    var date = new Date(games.first_release_date);
+    var html = compiledFunction({
+      gameName: games.name,
+      developer: "Developer: " + games.developers[0].name,
+      storyline: games.storyline,
+      popularity: "Popularity: " + Math.round(games.popularity),
+      releaseDate: "Release date: " + date.toString().slice(4, 15),
+      franchise: "Franchise name: " + games.franchise.name,
+      gameSummary: games.summary,
+      gameRating: "Game rating: " + Math.round(games.rating),
+      coverUrl: games.cover.url
+    });
+    return html;
+  }).catch(err => {
+    console.log(err);
+  });
+}
 
 
 app.listen(PORT, function () {
