@@ -76,22 +76,23 @@ app.get('/games/:id', function(req, res) {
       });
       res.send(html);
     }else{
-      var games_data = getFranchise(gameData);
-      console.log(games_data.name);
-      var date = new Date(games_data.first_release_date);
-      var html_2 = compiledFunction({
-        gameName: games_data.name,
-        developer: "Developer: " + games_data.developers[0].name,
-        storyline: games_data.storyline,
-        popularity: "Popularity: " + Math.round(games_data.popularity),
-        releaseDate: "Release date: " + date.toString().slice(4, 15),
-        franchise: "Franchise name: " + games_data.franchise.name,
-        gameSummary: games_data.summary,
-        gameRating: "Game rating: " + Math.round(games_data.rating),
-        coverUrl: games_data.cover.url
+      getFranchise(gameData).then(function(games_data){
+        console.log(games_data.name);
+        var date = new Date(games_data.first_release_date);
+        var html_2 = compiledFunction({
+          gameName: games_data.name,
+          developer: "Developer: " + games_data.developers[0].name,
+          storyline: games_data.storyline,
+          popularity: "Popularity: " + Math.round(games_data.popularity),
+          releaseDate: "Release date: " + date.toString().slice(4, 15),
+          franchise: "Franchise name: " + games_data.franchise.name,
+          gameSummary: games_data.summary,
+          gameRating: "Game rating: " + Math.round(games_data.rating),
+          coverUrl: games_data.cover.url
+        });
+        console.log('work here 3');
+        res.send(html_2);
       });
-      console.log('work here 3');
-      res.send(html_2);
     }
   }).catch(err => {
     console.log(err);
